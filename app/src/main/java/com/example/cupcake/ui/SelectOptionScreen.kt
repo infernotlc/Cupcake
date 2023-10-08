@@ -51,8 +51,8 @@ fun SelectOptionScreen(
     subtotal: String,
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
-    onCancelButtonClicked: () -> Unit = {},
-    onNextButtonClicked: () -> Unit = {},
+    onCancelButtonClicked: () -> Unit= {},
+    onNextButtonClicked: () -> Unit= {},
     modifier: Modifier = Modifier
 ){
     var selectedValue by rememberSaveable { mutableStateOf("") }
@@ -121,7 +121,7 @@ fun SelectOptionScreen(
 
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun SelectOptionPreview(){
     SelectOptionScreen(

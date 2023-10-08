@@ -82,7 +82,7 @@ class OrderViewModel : ViewModel() {
      * Reset the order state
      */
     fun resetOrder() {
-        _uiState.value = OrderUiState(pickupOptions = pickupOptions())
+        _uiState.value = OrderUiState(pickupOptions = pickupOptions())//bos liste
     }
 
     /**
@@ -111,7 +111,7 @@ class OrderViewModel : ViewModel() {
         // add current date and the following 3 dates.
         repeat(4) {
             dateOptions.add(formatter.format(calendar.time))
-            calendar.add(Calendar.DATE, 1)
+            calendar.add(Calendar.DATE, 1)// adds one day to calender
         }
         return dateOptions
     }

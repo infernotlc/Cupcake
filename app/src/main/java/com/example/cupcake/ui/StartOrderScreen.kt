@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -86,7 +85,7 @@ fun StartOrderScreen(
                 quantityOptions.forEach { item ->
                     SelectQuantityButton(
                         labelResourceId = item.first,
-                        onClick = { onNextButtonClicked(item.second) }
+                        onClick = {onNextButtonClicked(item.second)}
                     )
                 }
             }
@@ -112,12 +111,13 @@ fun SelectQuantityButton(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun StartOrderPreview(){
     StartOrderScreen(
         quantityOptions = DataSource.quantityOptions,
         onNextButtonClicked = {},
         modifier = Modifier.fillMaxSize().padding(dimensionResource(R.dimen.padding_medium))
+
     )
 }

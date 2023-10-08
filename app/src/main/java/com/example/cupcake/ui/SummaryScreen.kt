@@ -24,12 +24,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -48,8 +50,10 @@ import com.example.cupcake.ui.components.FormattedPriceLabel
 fun OrderSummaryScreen(
     orderUiState: OrderUiState,
     onCancelButtonClicked: () -> Unit,
-    onSendButtonClicked: (String, String) -> Unit,
+    onSendButtonClicked:(String, String) ->Unit,
+    onExitButtonClicked: () ->Unit,
     modifier: Modifier = Modifier
+
 ){
     val resources = LocalContext.current.resources
 
@@ -105,8 +109,20 @@ fun OrderSummaryScreen(
                 verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
             ) {
                 Button(
+                    onClick = onExitButtonClicked ,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor =Color.Red,
+                    ),
+
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { onSendButtonClicked(newOrder, orderSummary) }
+
+
+                    ){
+                    Text(stringResource(R.string.exit_button))
+                }
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {onSendButtonClicked(newOrder, orderSummary)}
                 ) {
                     Text(stringResource(R.string.send))
                 }
@@ -121,13 +137,14 @@ fun OrderSummaryScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun OrderSummaryPreview(){
     OrderSummaryScreen(
         orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
-        onSendButtonClicked = { subject: String, summary: String -> },
+        onSendButtonClicked= {subject: String, summary: String -> },
         onCancelButtonClicked = {},
+        onExitButtonClicked = {},
         modifier = Modifier.fillMaxHeight()
     )
 }
